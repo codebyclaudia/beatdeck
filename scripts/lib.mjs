@@ -10,7 +10,7 @@ export async function launchBrowser() {
   const args = ['--force-device-scale-factor=1'];
   const tries = [
     ...(process.env.BEATDECK_BROWSER ? [{ executablePath: process.env.BEATDECK_BROWSER }] : []),
-    { channel: 'chrome' }, { channel: 'msedge' }, {},
+    { channel: 'chrome' }, { channel: 'msedge' }, { executablePath: '/usr/bin/chromium' }, {},
   ];
   for (const t of tries) {
     try { return await chromium.launch({ headless: true, args, ...t }); } catch { /* next */ }
